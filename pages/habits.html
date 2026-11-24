@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/person2.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light lifesync-navbar sticky-top">
@@ -29,14 +30,116 @@
         </div>
     </nav>
 
-    <main class="page-placeholder">
-        <div class="container text-center">
-            <p class="section-eyebrow">LifeSync Habits</p>
-            <h1>Habits</h1>
-            <p class="text-muted">This feature will be developed in the next stage.</p>
-            <a class="btn lifesync-primary-btn" href="../index.html">Back to Dashboard</a>
+    <main class="feature-page">
+        <div class="container">
+            <!-- Page heading -->
+            <div class="feature-page-heading">
+                <div>
+                    <p class="section-eyebrow">LifeSync Habits</p>
+                    <h1>Habit Tracker</h1>
+                </div>
+                <button class="btn lifesync-primary-btn" type="button" data-bs-toggle="modal" data-bs-target="#habitModal">
+                    Add habit
+                </button>
+            </div>
+
+            <!-- Date display -->
+            <p class="small-muted mb-3" id="habitDate"></p>
+
+            <!-- Progress card -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <article class="dashboard-stat-card">
+                        <p>Total habits</p>
+                        <strong id="totalHabitCount">0</strong>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="dashboard-stat-card">
+                        <p>Completed today</p>
+                        <strong id="completedHabitCount">0</strong>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="dashboard-stat-card">
+                        <p>Pending today</p>
+                        <strong id="pendingHabitCount">0</strong>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Daily progress bar -->
+            <div class="dashboard-panel mb-4">
+                <div class="panel-heading">
+                    <div>
+                        <p class="section-eyebrow">Progress</p>
+                        <h3>Daily habit completion</h3>
+                    </div>
+                    <strong id="habitProgressPercent" class="progress-percent">0%</strong>
+                </div>
+                <div class="progress lifesync-progress" role="progressbar"
+                     aria-label="Habit completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="habitCompletionBar" class="progress-bar" style="width: 0%"></div>
+                </div>
+                <p id="habitProgressMessage" class="progress-message">No habits yet. Add one to get started!</p>
+            </div>
+
+            <!-- Habit lists -->
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <section class="task-column" aria-labelledby="pendingHabitsHeading">
+                        <div class="task-column-heading">
+                            <h2 id="pendingHabitsHeading">Pending</h2>
+                            <span id="pendingHabitBadge" class="task-count">0</span>
+                        </div>
+                        <div id="pendingHabitsList" class="task-list"></div>
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <section class="task-column" aria-labelledby="completedHabitsHeading">
+                        <div class="task-column-heading">
+                            <h2 id="completedHabitsHeading">Completed</h2>
+                            <span id="completedHabitBadge" class="task-count">0</span>
+                        </div>
+                        <div id="completedHabitsList" class="task-list"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Habit Modal -->
+        <div class="modal fade" id="habitModal" tabindex="-1" aria-labelledby="habitModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content lifesync-modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="habitModalTitle">Add habit</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="habitForm">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="habitName" class="form-label">Habit name</label>
+                                <input type="text" class="form-control" id="habitName" placeholder="e.g. Drink 8 glasses of water" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn lifesync-secondary-btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn lifesync-primary-btn">Save habit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
+
+    <footer class="lifesync-footer">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <a class="footer-brand" href="../index.html">LifeSync</a>
+                <p class="mb-0">&copy; <span id="currentYear"></span> LifeSync. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/app.js"></script>
