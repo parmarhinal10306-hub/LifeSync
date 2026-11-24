@@ -1,0 +1,96 @@
+/* =========================================================
+   Person 2 – Habit Tracker & Expense Manager styles
+   Keeps Person 1's style.css and responsive.css untouched.
+   ========================================================= */
+
+/* --- Habit Tracker --- */
+
+.habit-streak-badge {
+    padding: 4px 10px;
+    color: var(--sage-dark);
+    background: var(--sage-light);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+/* --- Expense Manager --- */
+
+.expense-amount {
+    color: var(--sage-dark);
+    font-size: 1.1rem;
+}
+
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    color: var(--sage-dark);
+    background: var(--sage-light);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.category-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: var(--white);
+    background: var(--sage);
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+.category-panel {
+    min-height: 380px;
+}
+
+.category-row {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.category-row:last-child {
+    border-bottom: 0;
+}
+
+.category-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.category-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+
+.category-amount {
+    font-weight: 700;
+    color: var(--sage-dark);
+}
+
+.category-progress {
+    margin: 6px 0 4px !important;
+    height: 7px !important;
+}
+
+/* --- Responsive adjustments for Person 2 features --- */
+
+@media (max-width: 575.98px) {
+    .category-panel {
+        min-height: auto;
+    }
+
+    .expense-amount {
+        font-size: 1rem;
+    }
+}
