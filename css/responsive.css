@@ -1,0 +1,110 @@
+@media (max-width: 991.98px) {
+    .lifesync-navbar {
+        min-height: 68px;
+    }
+
+    .navbar-collapse {
+        padding: 12px 0 8px;
+    }
+
+    .navbar-nav {
+        align-items: stretch !important;
+        gap: 2px;
+    }
+
+    .hero-card {
+        max-width: 100%;
+        margin: 10px 0 0;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .lifesync-brand {
+        font-size: 1.1rem;
+    }
+
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+    }
+
+    .hero-section {
+        padding: 48px 0 58px;
+    }
+
+    .hero-section h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
+    .lifesync-primary-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .features-section {
+        padding: 58px 0 64px;
+    }
+
+    .feature-card {
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .lifesync-footer {
+        text-align: center;
+    }
+
+    .dashboard-heading,
+    .feature-page-heading {
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .dashboard-heading {
+        flex-direction: column;
+    }
+
+    .feature-page-heading {
+        align-items: center;
+    }
+
+    .dashboard-heading h2 {
+        font-size: 1.7rem;
+    }
+
+    .feature-page {
+        padding: 48px 0 58px;
+    }
+
+    .task-column,
+    .calendar-card,
+    .calendar-selected-card,
+    .dashboard-panel {
+        padding: 18px;
+    }
+
+    .calendar-day {
+        min-height: 58px;
+        padding: 5px;
+    }
+
+    .calendar-task-dots {
+        margin-top: 6px;
+        gap: 2px;
+    }
+
+    .task-dot {
+        width: 5px;
+        height: 5px;
+    }
+}
