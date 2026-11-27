@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan your subjects and study sessions with LifeSync.">
+    <title>Study Planner | LifeSync</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/person2.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light lifesync-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand lifesync-brand" href="../index.html">
+                <span class="brand-mark" aria-hidden="true">L</span><span>LifeSync</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tasks.html">Tasks</a></li>
+                    <li class="nav-item"><a class="nav-link" href="calendar.html">Calendar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="habits.html">Habits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="expenses.html">Expenses</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="study-planner.html">Study Planner</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="feature-page">
+        <div class="container">
+            <div class="feature-page-heading study-planner-page-heading">
+                <div>
+                    <p class="section-eyebrow">LifeSync Study Planner</p>
+                    <h1>Study Planner</h1>
+                </div>
+                <div class="study-planner-heading-actions">
+                    <button class="btn lifesync-secondary-btn" type="button" data-bs-toggle="modal" data-bs-target="#subjectModal">Add subject</button>
+                    <button class="btn lifesync-primary-btn" id="addTopicButton" type="button" data-bs-toggle="modal" data-bs-target="#topicModal">Plan a session</button>
+                </div>
+            </div>
+
+            <div id="studyPlannerMessage" class="alert alert-warning" role="alert" aria-live="polite" hidden></div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-lg-3">
+                    <article class="dashboard-stat-card study-stat-card">
+                        <p>Total subjects</p>
+                        <strong id="totalSubjectCount">0</strong>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="dashboard-stat-card study-stat-card">
+                        <p>Total topics</p>
+                        <strong id="totalTopicCount">0</strong>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="dashboard-stat-card study-stat-card">
+                        <p>Completed</p>
+                        <strong id="completedTopicCount">0</strong>
+                    </article>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <article class="dashboard-stat-card study-stat-card">
+                        <p>Pending</p>
+                        <strong id="pendingTopicCount">0</strong>
+                    </article>
+                </div>
+            </div>
+
+            <section class="dashboard-panel study-progress-panel mb-4" aria-labelledby="studyProgressHeading">
+                <div class="panel-heading">
+                    <div>
+                        <p class="section-eyebrow">Progress</p>
+                        <h3 id="studyProgressHeading">Study completion</h3>
+                    </div>
+                    <strong id="studyProgressPercent" class="progress-percent">0%</strong>
+                </div>
+                <div class="progress lifesync-progress" role="progressbar" aria-label="Study completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="studyCompletionBar" class="progress-bar" style="width: 0%"></div>
+                </div>
+                <p id="studyProgressMessage" class="progress-message">No topics yet. Add a subject to get started.</p>
+            </section>
+
+            <div class="row g-4 mb-4">
+                <div class="col-lg-6">
+                    <section class="dashboard-panel study-schedule-panel" aria-labelledby="todayScheduleHeading">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="section-eyebrow">Today</p>
+                                <h3 id="todayScheduleHeading">Today's study schedule</h3>
+                            </div>
+                            <span id="studyTodayDate" class="small-muted"></span>
+                        </div>
+                        <div id="todayStudySchedule" class="study-schedule-list"></div>
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <section class="dashboard-panel study-schedule-panel" aria-labelledby="upcomingScheduleHeading">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="section-eyebrow">Coming up</p>
+                                <h3 id="upcomingScheduleHeading">Upcoming sessions</h3>
+                            </div>
+                        </div>
+                        <div id="upcomingStudySchedule" class="study-schedule-list"></div>
+                    </section>
+                </div>
+            </div>
+
+            <section aria-labelledby="subjectsHeading">
+                <div class="study-subjects-heading">
+                    <div>
+                        <p class="section-eyebrow">Your learning plan</p>
+                        <h2 id="subjectsHeading">Subjects &amp; topics</h2>
+                    </div>
+                </div>
+                <div id="studySubjects" class="study-subject-list"></div>
+            </section>
+        </div>
+
+        <div class="modal fade" id="subjectModal" tabindex="-1" aria-labelledby="subjectModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content lifesync-modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="subjectModalTitle">Add subject</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="subjectForm">
+                        <div class="modal-body">
+                            <input type="hidden" id="subjectId">
+                            <label for="subjectName" class="form-label">Subject name</label>
+                            <input type="text" class="form-control" id="subjectName" maxlength="80" placeholder="e.g. Biology" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn lifesync-secondary-btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn lifesync-primary-btn" id="saveSubjectButton">Save subject</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="topicModal" tabindex="-1" aria-labelledby="topicModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content lifesync-modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="topicModalTitle">Plan a study session</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="topicForm">
+                        <div class="modal-body">
+                            <input type="hidden" id="topicId">
+                            <div class="mb-3">
+                                <label for="topicSubject" class="form-label">Subject</label>
+                                <select class="form-select" id="topicSubject" required></select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="topicName" class="form-label">Topic</label>
+                                <input type="text" class="form-control" id="topicName" maxlength="120" placeholder="e.g. Cell structure" required>
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-6">
+                                    <label for="topicDate" class="form-label">Study date</label>
+                                    <input type="date" class="form-control" id="topicDate" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="topicTime" class="form-label">Start time</label>
+                                    <input type="time" class="form-control" id="topicTime" required>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="topicDuration" class="form-label">Duration (minutes)</label>
+                                    <input type="number" class="form-control" id="topicDuration" min="1" max="1440" step="1" value="60" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="topicPriority" class="form-label">Priority</label>
+                                    <select class="form-select" id="topicPriority" required>
+                                        <option value="High">High</option>
+                                        <option value="Medium" selected>Medium</option>
+                                        <option value="Low">Low</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn lifesync-secondary-btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn lifesync-primary-btn" id="saveTopicButton">Save topic</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="lifesync-footer">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <a class="footer-brand" href="../index.html">LifeSync</a>
+                <p class="mb-0">&copy; <span id="currentYear"></span> LifeSync. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/study-planner.js"></script>
+</body>
+</html>

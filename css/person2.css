@@ -1,5 +1,5 @@
 /* =========================================================
-   Person 2 – Habit Tracker & Expense Manager styles
+   Habit Tracker, Expense Manager & Study Planner styles
    Keeps Person 1's style.css and responsive.css untouched.
    ========================================================= */
 
@@ -83,7 +83,378 @@
     height: 7px !important;
 }
 
+/* --- Study Planner --- */
+
+.study-planner-heading-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.study-stat-card {
+    height: 100%;
+    padding: 18px 20px;
+}
+
+.study-stat-card strong {
+    font-size: 2rem;
+}
+
+.study-progress-panel {
+    min-height: 0;
+}
+
+.study-schedule-panel {
+    min-height: 310px;
+}
+
+.study-schedule-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.study-schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--cream);
+    border-radius: 10px;
+}
+
+.study-schedule-time {
+    min-width: 76px;
+    color: var(--sage-dark);
+    font-weight: 800;
+}
+
+.study-schedule-time small,
+.study-schedule-details small {
+    display: block;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.study-schedule-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.study-schedule-details strong {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.study-schedule-item.is-completed {
+    opacity: 0.68;
+}
+
+.study-subjects-heading {
+    margin-bottom: 18px;
+}
+
+.study-subjects-heading h2 {
+    margin: 5px 0 0;
+    font-size: 1.6rem;
+}
+
+.study-subject-list {
+    display: grid;
+    gap: 16px;
+}
+
+@media (min-width: 1200px) {
+    .study-subject-list {
+        grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+    }
+}
+
+.study-subject-card {
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.study-subject-header,
+.study-subject-header > div:first-child {
+    display: flex;
+    align-items: center;
+}
+
+.study-subject-header {
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.study-subject-header > div:first-child {
+    min-width: 0;
+    gap: 12px;
+}
+
+.study-subject-header > .task-actions {
+    margin-right: 12px;
+}
+
+.study-subject-header h3 {
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: 1.15rem;
+}
+
+.study-subject-mark {
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    color: var(--sage-dark);
+    background: var(--sage-light);
+    border-radius: 11px;
+    font-weight: 800;
+}
+
+.study-topic-list {
+    display: grid;
+    gap: 10px;
+    padding-top: 14px;
+}
+
+.study-empty-topics {
+    padding: 12px;
+}
+
+.study-topic-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--cream-light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.study-topic-check {
+    flex: 0 0 auto;
+}
+
+.study-topic-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.study-topic-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.study-topic-title-row h4 {
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: 0.98rem;
+}
+
+.study-topic-details p {
+    margin: 4px 0;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.study-topic-status {
+    color: var(--sage-dark);
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+.study-topic-row.is-completed {
+    opacity: 0.68;
+}
+
+.study-topic-row.is-completed h4 {
+    text-decoration: line-through;
+}
+
+.study-topic-actions {
+    flex: 0 0 auto;
+}
+
+/* --- Demo authentication --- */
+
+.auth-body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(126, 146, 120, 0.13), transparent 25%),
+        var(--cream-light);
+}
+
+.auth-page {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    padding: 48px 0;
+}
+
+.auth-layout {
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.auth-intro {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.auth-card {
+    padding: clamp(24px, 6vw, 36px);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 14px 36px rgba(89, 106, 85, 0.08);
+}
+
+.auth-card h1 {
+    margin: 0 0 6px;
+    font-size: 1.6rem;
+}
+
+.auth-card-copy {
+    margin-bottom: 24px;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.auth-message {
+    margin-bottom: 20px;
+    padding: 11px 13px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 0.88rem;
+}
+
+.auth-message.is-error {
+    color: #854d43;
+    background: #f8e9e5;
+    border-color: #efd4cd;
+}
+
+.auth-message.is-success {
+    color: var(--sage-dark);
+    background: var(--sage-light);
+    border-color: #cbd6c5;
+}
+
+.auth-card .form-label {
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.auth-card .form-control {
+    min-height: 46px;
+    border-color: var(--border);
+    border-radius: 9px;
+}
+
+.auth-card .form-control:focus {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(126, 146, 120, 0.15);
+}
+
+.auth-password-field {
+    position: relative;
+}
+
+.auth-password-field .form-control {
+    padding-right: 68px;
+}
+
+.auth-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    padding: 3px 4px;
+    color: var(--sage-dark);
+    background: transparent;
+    border: 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    transform: translateY(-50%);
+}
+
+.auth-password-toggle:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.auth-form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 22px;
+}
+
+.auth-remember {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.83rem;
+}
+
+.auth-remember .form-check-input {
+    margin: 0;
+    border-color: var(--sage);
+}
+
+.auth-remember .form-check-input:checked {
+    background-color: var(--sage);
+    border-color: var(--sage);
+}
+
+.auth-field-hint {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.auth-submit {
+    width: 100%;
+    min-height: 48px;
+}
+
+.auth-switch {
+    margin: 22px 0 0;
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.88rem;
+}
+
+.auth-switch a {
+    color: var(--sage-dark);
+    font-weight: 800;
+}
+
 /* --- Responsive adjustments for Person 2 features --- */
+
+@media (max-width: 767.98px) {
+    .study-planner-heading-actions {
+        flex-direction: column;
+    }
+
+    .auth-page {
+        align-items: flex-start;
+        padding: 28px 0;
+    }
+
+    .auth-layout {
+        width: 100%;
+    }
+}
 
 @media (max-width: 575.98px) {
     .category-panel {
@@ -92,5 +463,52 @@
 
     .expense-amount {
         font-size: 1rem;
+    }
+
+    .study-planner-heading-actions {
+        width: 100%;
+    }
+
+    .study-planner-heading-actions .btn {
+        width: 100%;
+    }
+
+    .study-planner-page-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .study-schedule-item,
+    .study-topic-row {
+        align-items: flex-start;
+    }
+
+    .study-schedule-item .priority-badge {
+        display: none;
+    }
+
+    .study-subject-card {
+        padding: 16px;
+    }
+
+    .study-subject-header {
+        align-items: flex-start;
+    }
+
+    .study-topic-row {
+        flex-wrap: wrap;
+    }
+
+    .study-topic-actions {
+        width: 100%;
+        padding-left: 32px;
+    }
+
+    .auth-page {
+        padding: 22px 0;
+    }
+
+    .auth-card {
+        padding: 22px 18px;
     }
 }

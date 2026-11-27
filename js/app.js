@@ -1,6 +1,28 @@
 // Shared JavaScript for the LifeSync website.
 // Feature-specific code should be placed in the matching JS file.
 
+var AUTH_SESSION_KEY = "lifesyncDemoSession";
+var authPage = window.location.pathname.toLowerCase().split("/").pop() || "index.html";
+var isPublicAuthPage = authPage === "login.html" || authPage === "signup.html";
+
+function getAuthSession() {
+    try {
+        return JSON.parse(localStorage.getItem(AUTH_SESSION_KEY) || "null");
+    } catch (error) {
+        console.error("Could not read the LifeSync demo session:", error);
+        return null;
+    }
+}
+
+function guardProtectedPage() {
+    if (isPublicAuthPage || getAuthSession()) return;
+
+    var isFeaturePage = window.location.pathname.toLowerCase().indexOf("/pages/") !== -1;
+    window.location.replace(isFeaturePage ? "login.html" : "pages/login.html");
+}
+
+guardProtectedPage();
+
 window.LifeSync = {
     taskKey: "lifesyncTasks",
 
@@ -52,6 +74,8 @@ window.LifeSync = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
+    guardProtectedPage();
+
     const yearElement = document.getElementById("currentYear");
 
     if (yearElement) {
@@ -69,4 +93,35 @@ document.addEventListener("DOMContentLoaded", function () {
             link.setAttribute("aria-current", "page");
         }
     });
+
+    const session = getAuthSession();
+    const navigation = document.querySelector(".navbar-nav");
+
+    if (!isPublicAuthPage && session && navigation &&
+            !navigation.querySelector("[data-auth-logout]")) {
+        const logoutItem = document.createElement("li");
+        logoutItem.className = "nav-item";
+        const logoutButton = document.createElement("button");
+        logoutButton.className = "nav-link auth-logout-link";
+        logoutButton.type = "button";
+        logoutButton.dataset.authLogout = "";
+        logoutButton.textContent = "Log out";
+        logoutItem.appendChild(logoutButton);
+        navigation.appendChild(logoutItem);
+    }
+
+    document.querySelectorAll("[data-auth-logout]").forEach(function (button) {
+        button.addEventListener("click", function () {
+            try {
+                localStorage.removeItem(AUTH_SESSION_KEY);
+                var isFeaturePage = window.location.pathname.toLowerCase().indexOf("/pages/") !== -1;
+                window.location.replace(isFeaturePage ? "login.html" : "pages/login.html");
+            } catch (error) {
+                console.error("Could not clear the LifeSync demo session:", error);
+                window.alert("LifeSync could not log you out because browser storage is unavailable.");
+            }
+        });
+    });
 });
+
+window.addEventListener("pageshow", guardProtectedPage);
